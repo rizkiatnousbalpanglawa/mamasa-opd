@@ -24,7 +24,7 @@
                         {{ $item->nama }}
                     </button>
                 @empty
-                    <span class="text-muted">Tidak ada kategori</span>
+                    <div class="text-muted">Tidak ada Data</div>
                 @endforelse
             </div>
             <div class="row g-3 gallery">
