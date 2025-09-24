@@ -111,8 +111,16 @@
                     <hr class="">
                     <div class="list-group">
                         @foreach ($informasi as $item)
-                            <a href="#"
+                            @php
+                                $link = Str::startsWith($item->lampiran, 'informasi/')
+                                    ? Storage::url($item->lampiran)
+                                    : url($item->lampiran);
+                            @endphp
+
+                            <a href="#" wire:click.prevent="incrementView({{ $item->id }})"
+                                onclick="window.open('{{ $link }}', '_blank')"
                                 class="custom-list-group-item custom-list-group-item-action d-flex align-items-start border-0 shadow-sm mb-3 rounded px-3 py-2">
+
                                 <i class="bi bi-file-text fs-4 me-3"></i>
                                 <div>
                                     <h6 class="mb-1">

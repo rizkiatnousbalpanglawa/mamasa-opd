@@ -8,6 +8,15 @@ use Livewire\Component;
 
 class Informasi extends Component
 {
+    public function incrementView($id)
+    {
+        $item = ModelsInformasi::find($id);
+
+        if ($item) {
+            $item->increment('views');
+        }
+    }
+
     public function render()
     {
         $data['kategori'] = InformasiKategori::get();
