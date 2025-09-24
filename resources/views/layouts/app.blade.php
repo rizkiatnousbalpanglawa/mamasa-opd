@@ -42,12 +42,13 @@
             class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
             <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto me-xl-0">
                 <img src="{{ asset(Storage::url($opd->image)) }}" alt="" />
-                <h1 class="sitename">{{ $opd->singkatan }}</h1>
+                <h1 class="sitename">{{ Str::limit($opd->singkatan, 20) }}</h1>
             </a>
 
             <x-navigation-menu />
 
-            <a class="btn-getstarted" href="https://mamasa.usbal.xyz">PORTAL <i class="bi bi-arrow-up-right"></i></a>
+            <a class="btn-getstarted" href="https://mamasa.usbal.xyz">PORTAL</a>
+            {{-- <a class="btn-getstarted" href="https://mamasa.usbal.xyz">PORTAL <i class="bi bi-arrow-up-right"></i></a> --}}
         </div>
     </header>
 
