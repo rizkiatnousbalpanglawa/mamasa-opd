@@ -15,16 +15,18 @@
                     <div class="row g-4">
                         @forelse ($berita as $item)
                             <div class="col-lg-4 col-md-6">
-                                <div class="card h-100 shadow-sm border-0 news-card">
-                                    <img src="{{ asset(Storage::url($item->image)) }}" class="card-img-top"
-                                        alt="{{ $item->judul }}" />
-                                    <div class="card-body">
-                                        <h6 class="text-muted small">{{ $item->penulis->nama }}</h6>
-                                        <h5 class="card-title">
-                                            {{ $item->judul }}
-                                        </h5>
+                                <a href="{{ route('berita.detail', $item->slug) }}">
+                                    <div class="card h-100 shadow-sm border-0 news-card">
+                                        <img src="{{ asset(Storage::url($item->image)) }}" class="card-img-top"
+                                            alt="{{ $item->judul }}" />
+                                        <div class="card-body">
+                                            <h6 class="text-muted small">{{ $item->penulis->nama }}</h6>
+                                            <h5 class="card-title">
+                                                {{ $item->judul }}
+                                            </h5>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         @empty
                             <div class="h4 text-center">
