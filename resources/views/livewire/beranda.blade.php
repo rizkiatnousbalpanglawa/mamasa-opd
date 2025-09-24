@@ -6,24 +6,22 @@
              <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                  <!-- Indicators -->
                  <div class="carousel-indicators">
-                     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
-                     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
-                     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
+                     @forelse ($slider as $item)
+                         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ $loop->iteration }}"
+                             class="{{ $loop->iteration === 1 ? 'active' : '' }}"></button>
+                     @empty
+                     @endforelse
                  </div>
 
                  <!-- Carousel inner -->
                  <div class="carousel-inner rounded-4">
-                     <div class="carousel-item active">
-                         <img src="https://picsum.photos/1200/400?random=1" class="d-block w-100" alt="Slide 1" />
-                     </div>
-
-                     <div class="carousel-item">
-                         <img src="https://picsum.photos/1200/400?random=2" class="d-block w-100" alt="Slide 2" />
-                     </div>
-
-                     <div class="carousel-item">
-                         <img src="https://picsum.photos/1200/400?random=3" class="d-block w-100" alt="Slide 3" />
-                     </div>
+                     @forelse ($slider as $item)
+                         <div class="carousel-item {{ $loop->iteration === 1 ? 'active' : '' }}">
+                             <img src="{{ asset(Storage::url($item->image)) }}" class="d-block w-100"
+                                 alt="Slide {{ $loop->iteration }}" />
+                         </div>
+                     @empty
+                     @endforelse
                  </div>
 
                  <!-- Controls -->
@@ -52,7 +50,8 @@
                  @forelse ($berita as $item)
                      <div class="col-lg-3 col-md-6">
                          <div class="card h-100 shadow-sm border-0 news-card">
-                             <img src="https://picsum.photos/400/250?random=11" class="card-img-top" alt="..." />
+                             <img src="{{ asset(Storage::url($item->image)) }}" class="card-img-top"
+                                 alt="{{ $item->judul }}" />
                              <div class="card-body">
                                  <h6 class="text-muted small">{{ $item->penulis->nama }}</h6>
                                  <h5 class="card-title">
