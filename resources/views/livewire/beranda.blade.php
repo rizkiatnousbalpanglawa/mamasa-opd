@@ -48,21 +48,38 @@
          <div class="container my-4">
              <div class="row g-4">
                  @forelse ($berita as $item)
-                     <div class="col-lg-3 col-md-6">
+                     <div class="col-lg-3 col-md-6 mb-4">
                          <div class="card h-100 shadow-sm border-0 news-card">
                              <img src="{{ asset(Storage::url($item->image)) }}" class="card-img-top"
                                  alt="{{ $item->judul }}" />
                              <div class="card-body">
-                                 <h6 class="text-muted small">{{ $item->penulis->nama }}</h6>
+                                 {{-- Bagian yang ditambahkan --}}
+                                 <div class="d-flex justify-content-between align-items-center text-muted small mb-2">
+                                     <span class="text-truncate">
+                                         <i class="bi bi-person me-1"></i>
+                                         {{ $item->penulis->nama }}
+                                     </span>
+                                     <span>
+                                         <i class="bi bi-calendar3 me-1"></i>
+                                         {{-- Format tanggal agar lebih mudah dibaca --}}
+                                         {{ $item->created_at->format('d M Y') }}
+                                     </span>
+                                 </div>
+                                 {{-- Akhir bagian tambahan --}}
+
                                  <h5 class="card-title">
-                                     {{ $item->judul }}
+                                     <a href="#" class="text-decoration-none text-dark stretched-link">
+                                         {{ $item->judul }}
+                                     </a>
                                  </h5>
                              </div>
                          </div>
                      </div>
                  @empty
-                     <div class="h4 text-center">
-                         Data Masih Kosong!
+                     <div class="col">
+                         <div class="h4 text-center">
+                             Data Masih Kosong!
+                         </div>
                      </div>
                  @endforelse
              </div>
