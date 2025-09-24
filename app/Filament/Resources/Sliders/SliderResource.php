@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Sliders;
 
 use App\Filament\Resources\Sliders\Pages\ManageSliders;
+use App\GroupNavigasi;
 use App\Models\Slider;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -17,12 +18,15 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Storage;
+use UnitEnum;
 
 class SliderResource extends Resource
 {
     protected static ?string $model = Slider::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static string|UnitEnum|null $navigationGroup = GroupNavigasi::BERANDA;
 
     public static function form(Schema $schema): Schema
     {

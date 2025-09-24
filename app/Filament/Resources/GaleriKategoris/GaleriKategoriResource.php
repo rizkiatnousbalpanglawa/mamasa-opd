@@ -1,57 +1,39 @@
 <?php
 
-namespace App\Filament\Resources\IdentitasOpds;
+namespace App\Filament\Resources\GaleriKategoris;
 
-use App\Filament\Resources\IdentitasOpds\Pages\ManageIdentitasOpds;
+use App\Filament\Resources\GaleriKategoris\Pages\ManageGaleriKategoris;
 use App\GroupNavigasi;
-use App\Models\IdentitasOpd;
+use App\Models\GaleriKategori;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Storage;
 use UnitEnum;
 
-class IdentitasOpdResource extends Resource
+class GaleriKategoriResource extends Resource
 {
-    protected static ?string $model = IdentitasOpd::class;
+    protected static ?string $model = GaleriKategori::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static string|UnitEnum|null $navigationGroup = GroupNavigasi::BERANDA;
-
-    protected static ?string $pluralModelLabel = 'OPD';
-
-    protected static ?string $label = 'OPD';
+    protected static string|UnitEnum|null $navigationGroup = GroupNavigasi::GALERI;
+    protected static ?string $pluralLabel = 'Kategori Galeri';
+    protected static ?string $label = 'Kategori Galeri';
 
     public static function form(Schema $schema): Schema
     {
         return $schema
             ->components([
-                FileUpload::make('image')
-                    ->label('logo')
-                    ->image()
-                    ->directory('opd')
-                    ->deleteUploadedFileUsing(function ($file) {
-                        if ($file && Storage::disk('public')->exists($file)) {
-                            Storage::disk('public')->delete($file);
-                        }
-                    })
-                    ->maxSize(1024)
-                    ->columnSpanFull()
-                    ->required(),
                 TextInput::make('nama')
-                    ->required(),
-                TextInput::make('singkatan')
+                    ->label('Nama Kategori')
                     ->required(),
             ]);
     }
@@ -60,11 +42,7 @@ class IdentitasOpdResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')
-                    ->label('Logo'),
                 TextColumn::make('nama')
-                    ->searchable(),
-                TextColumn::make('singkatan')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -92,7 +70,7 @@ class IdentitasOpdResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ManageIdentitasOpds::route('/'),
+            'index' => ManageGaleriKategoris::route('/'),
         ];
     }
 }

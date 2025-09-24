@@ -11,84 +11,40 @@
     <section id="" class="section">
         <div class="container">
             <div class="d-flex justify-content-center mb-4" id="filter-buttons">
-                <button class="btn rounded-pill mx-2 active" data-filter="all">Semua</button>
-                <button class="btn rounded-pill mx-2" data-filter="alam">Alam</button>
-                <button class="btn rounded-pill mx-2" data-filter="kota">Perkotaan</button>
-                <button class="btn rounded-pill mx-2" data-filter="lainnya">Lainnya</button>
+                {{-- Tombol Semua --}}
+                <button class="btn rounded-pill mx-2 {{ $kategoriTerpilih === null ? 'active' : '' }}"
+                    wire:click.prevent="pilihKategori(null)">
+                    Semua
+                </button>
+
+                {{-- Loop kategori --}}
+                @forelse ($kategori as $item)
+                    <button class="btn rounded-pill mx-2 {{ $kategoriTerpilih === $item->id ? 'active' : '' }}"
+                        wire:click.prevent="pilihKategori({{ $item->id }})">
+                        {{ $item->nama }}
+                    </button>
+                @empty
+                    <span class="text-muted">Tidak ada kategori</span>
+                @endforelse
             </div>
             <div class="row g-3 gallery">
-                <div class="col-3">
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal"
-                        data-bs-img-src="https://picsum.photos/1200/1200?random=1" data-bs-title="Gambar Acak 1">
-                        <img src="https://picsum.photos/400/400?random=1" alt="Gambar Acak 1" />
-                        <div class="overlay">
-                            <div class="overlay-text">
-                                <i class="bi bi-zoom-in"></i>
-                                <div>Gambar Acak 1</div>
+                @forelse ($galeri as $item)
+                    <div class="col-3">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal"
+                            data-bs-img-src="{{ asset(Storage::url($item->image)) }}"
+                            data-bs-title="{{ $item->nama }}">
+                            <img src="{{ asset(Storage::url($item->image)) }}" alt="{{ $item->nama }}" />
+                            <div class="overlay">
+                                <div class="overlay-text">
+                                    <i class="bi bi-zoom-in"></i>
+                                    <div>{{ $item->nama }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-3">
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal"
-                        data-bs-img-src="https://picsum.photos/1200/1200?random=2" data-bs-title="Gambar Acak 2">
-                        <img src="https://picsum.photos/400/400?random=2" alt="Gambar Acak 2" />
-                        <div class="overlay">
-                            <div class="overlay-text">
-                                <i class="bi bi-zoom-in"></i>
-                                <div>Gambar Acak 2</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal"
-                        data-bs-img-src="https://picsum.photos/1200/1200?random=3" data-bs-title="Gambar Acak 3">
-                        <img src="https://picsum.photos/400/400?random=3" alt="Gambar Acak 3" />
-                        <div class="overlay">
-                            <div class="overlay-text">
-                                <i class="bi bi-zoom-in"></i>
-                                <div>Gambar Acak 3</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal"
-                        data-bs-img-src="https://picsum.photos/1200/1200?random=4" data-bs-title="Gambar Acak 4">
-                        <img src="https://picsum.photos/400/400?random=4" alt="Gambar Acak 4" />
-                        <div class="overlay">
-                            <div class="overlay-text">
-                                <i class="bi bi-zoom-in"></i>
-                                <div>Gambar Acak 4</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal"
-                        data-bs-img-src="https://picsum.photos/1200/1200?random=5" data-bs-title="Gambar Acak 5">
-                        <img src="https://picsum.photos/400/400?random=5" alt="Gambar Acak 5" />
-                        <div class="overlay">
-                            <div class="overlay-text">
-                                <i class="bi bi-zoom-in"></i>
-                                <div>Gambar Acak 5</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal"
-                        data-bs-img-src="https://picsum.photos/1200/1200?random=6" data-bs-title="Gambar Acak 6">
-                        <img src="https://picsum.photos/400/400?random=6" alt="Gambar Acak 6" />
-                        <div class="overlay">
-                            <div class="overlay-text">
-                                <i class="bi bi-zoom-in"></i>
-                                <div>Gambar Acak 6</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                @endforelse
+
             </div>
     </section>
 
