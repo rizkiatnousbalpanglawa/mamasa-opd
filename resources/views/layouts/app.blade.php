@@ -42,7 +42,10 @@
             class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
             <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto me-xl-0">
                 <img src="{{ asset(Storage::url($opd->image)) }}" alt="" />
-                <h1 class="sitename">{{ Str::limit($opd->singkatan, 20) }}</h1>
+                <div class="">
+                    <h1 class="sitename">{{ Str::limit($opd->singkatan, 15) }}</h1>
+                    <h6 class="d-none d-md-block">{{ Str::limit($opd->nama, 50) }}</h6>
+                </div>
             </a>
 
             <x-navigation-menu />
