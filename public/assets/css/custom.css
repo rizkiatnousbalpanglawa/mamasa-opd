@@ -1,0 +1,128 @@
+.konten-berita img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Gaya Tombol Filter Kustom --- */
+#filter-buttons .btn {
+    border-color: #14213d;
+    /* Warna border default */
+    color: #14213d;
+    /* Warna teks default */
+}
+
+/* Gaya untuk tombol saat di-hover atau dalam kondisi 'active' */
+#filter-buttons .btn:hover,
+#filter-buttons .btn.active {
+    background-color: #14213d;
+    /* Background biru gelap */
+    border-color: #14213d;
+    color: #ffffff;
+    /* Teks menjadi putih agar kontras */
+}
+
+.gallery .gallery-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.gallery .gallery-item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    background-color: #eee;
+}
+
+.gallery .gallery-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery .gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.gallery .gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery .overlay-text {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.gallery .overlay-text i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+#galleryModal .modal-lg {
+    max-width: 800px;
+}
+
+/* Navbar & Footer */
+.bg-primary-custom {
+    background-color: #14213d;
+}
+
+/* Card (untuk Sidebar Filter) */
+.card-header-custom {
+    background-color: #14213d;
+    color: white;
+    border-bottom: none;
+}
+
+/* List Group (untuk Daftar Informasi) */
+.custom-list-group-item {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.custom-list-group-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.custom-list-group-item i.bi {
+    color: #fca311;
+    transition: transform 0.2s ease-in-out;
+}
+
+.custom-list-group-item:hover i.bi {
+    transform: scale(1.1);
+}
+
+/* Pagination */
+.pagination .page-item.active .page-link {
+    background-color: #fca311;
+    border-color: #fca311;
+    color: #14213d;
+    font-weight: bold;
+}
+
+.pagination .page-link {
+    color: #14213d;
+}
+
+.pagination .page-link:hover {
+    background-color: #fdeac7;
+}
+
+/* -- 3. Layout -- */
+.sidebar {
+    position: sticky;
+    top: 1rem;
+}

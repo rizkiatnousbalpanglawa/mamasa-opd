@@ -37,18 +37,21 @@
                         </span>
                     </h4>
                     <hr>
+
                     @if ($kategori->image)
                         <div class="row">
                             <div class="col-lg-4 mb-4">
                                 <img src="{{ asset(Storage::url($kategori->image)) }}" alt="{{ $kategori->kategori }}"
                                     class="img-fluid rounded-3">
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-8 konten-berita">
                                 {!! $kategori->konten !!}
                             </div>
                         </div>
                     @else
-                        {!! $kategori->konten !!}
+                        <div class="konten-berita">
+                            {!! $kategori->konten !!}
+                        </div>
                     @endif
 
                 </div>
