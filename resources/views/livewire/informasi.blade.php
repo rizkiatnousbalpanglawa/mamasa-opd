@@ -23,15 +23,15 @@
                                     <label for="searchInput" class="form-label">Pencarian</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-search"></i></span>
-                                        <input type="text" class="form-control" id="searchInput"
-                                            placeholder="Cari informasi..." />
+                                        <input type="text" wire:model.live="pencarian" class="form-control"
+                                            id="searchInput" placeholder="Cari informasi..." />
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="filterKategori" class="form-label">Kategori</label>
-                                    <select class="form-select" id="filterKategori">
-                                        <option selected>Semua Kategori</option>
+                                    <select class="form-select" wire:model.live="kategoriTerpilih" id="filterKategori">
+                                        <option value="" selected>Semua Kategori</option>
                                         @foreach ($kategori as $item)
                                             <option value="{{ $item->id }}">{{ $item->kategori }}</option>
                                         @endforeach
@@ -56,6 +56,11 @@
                     <h2 class="mb-2">Daftar Informasi</h2>
                     <hr class="">
                     <div class="list-group">
+                        <div class="text-center" wire:loading>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
                         @foreach ($informasi as $item)
                             @php
                                 $link = Str::startsWith($item->lampiran, 'informasi/')
@@ -70,6 +75,7 @@
                                 <i class="bi bi-file-text fs-4 me-3"></i>
                                 <div>
                                     <h6 class="mb-1">
+
                                         {{ $item->judul }}
                                     </h6>
                                     <small class="text-muted">
@@ -79,6 +85,7 @@
                                 </div>
                             </a>
                         @endforeach
+
                     </div>
                 </div>
             </div>

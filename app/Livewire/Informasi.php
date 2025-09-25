@@ -8,6 +8,7 @@ use Livewire\Component;
 
 class Informasi extends Component
 {
+    public $tahunTerpilih, $kategoriTerpilih, $pencarian = '';
     public function incrementView($id)
     {
         $item = ModelsInformasi::find($id);
@@ -23,7 +24,19 @@ class Informasi extends Component
         $data['tahun'] = ModelsInformasi::selectRaw('YEAR(tanggal) as tahun')
             ->distinct()
             ->pluck('tahun');
-        $data['informasi'] = ModelsInformasi::get();
+
+        $query = ModelsInformasi::query();
+
+        if ($this->kategoriTerpilih) {
+            $query->where('kategori_id', $this->kategoriTerpilih);
+        }
+
+        if ($this->pencarian) {
+            $query->where('judul', 'LIKE', '%' . $this->pencarian . '%');
+        }
+
+        $data['informasi'] = $query->get();
+
         return view('livewire.informasi', $data);
     }
 }
