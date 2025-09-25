@@ -11,7 +11,7 @@ class Beranda extends Component
 {
     public function render()
     {
-        $data['berita'] = Berita::get();
+        $data['berita'] = Berita::limit(4)->latest()->get();
         $data['slider'] = Slider::get();
         return view('livewire.beranda', $data);
     }

@@ -59,33 +59,62 @@
 
     <footer id="footer" class="footer position-relative light-background">
         <div class="container footer-top">
-            <div class="row gy-4 text-center">
-                <div class="col-lg-12 footer-about">
-                    <a href="" class="logo">
-                        <img src="{{ asset(Storage::url($opd->image)) }}" class="img-fluid" alt="Logo Website" />
+            <div class="row gy-4">
+                <div class="col-lg-6 footer-about">
+                    <a href="{{ url('/') }}" class="logo ">
+                        <img src="{{ asset('front-assets/img/logo-website.png') }}" class="img-fluid"
+                            alt="Logo Website" />
                     </a>
                     <div class="footer-contact pt-3">
                         <p>Jalan Poros Mamasa</p>
-                        <p>
-                            Kecamatan Osango, Kabupaten Mamasa, Sulawesi Barat, Indonesia
-                        </p>
-                        <p>
-                            <strong>Phone:</strong> <span>(0411) 402237 </span>
-                            <strong>Email:</strong>
+                        <p>Kecamatan Osango, Kabupaten Mamasa, Sulawesi Barat, Indonesia</p>
+                        <p> <strong>Phone:</strong> <span>(0411) 402237 </span> <strong>Email:</strong>
                             <span>admin@mamasakab.go.id</span>
                         </p>
                     </div>
-                    <div class="social-links d-flex justify-content-center mt-4">
+                    <div class="social-links d-flex  mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>
                         <a href=""><i class="bi bi-facebook"></i></a>
                         <a href=""><i class="bi bi-instagram"></i></a>
                         <a href=""><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
+
+                <div class="col-lg-4">
+                    <div class="statistik">
+                        @php
+                            $today = \Carbon\Carbon::today();
+                            $statToday = \App\Models\StatistikHarian::where('tanggal', $today)->first();
+
+                            $pengunjungHariIni = $statToday->pengunjung ?? 0;
+                            $hitsHariIni = $statToday->hits ?? 0;
+
+                            $totalPengunjung = \App\Models\StatistikHarian::sum('pengunjung');
+                            $totalHits = \App\Models\StatistikHarian::sum('hits');
+
+                            $pengunjungOnline = \App\Models\StatistikOnline::where(
+                                'last_activity',
+                                '>=',
+                                \Carbon\Carbon::now()->subMinutes(5),
+                            )->count();
+                        @endphp
+                        <h5>Statistik</h5>
+                        <h1 class="fw-bold"> {{ number_format($totalHits) }}</h1>
+                        <div class="">Pengunjung Hari ini: <span class="fw-bold">{{ $pengunjungHariIni }}</span>
+                        </div>
+                        <div class="">Total Pengunjung: <span class="fw-bold">{{ $totalPengunjung }}</span></div>
+                        <div class="">Hits Hari ini: <span class="fw-bold">{{ $hitsHariIni }}</span></div>
+                        <div class="">Pengunjung Online: <span class="fw-bold">{{ $pengunjungOnline }}</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <div class="container copyright text-center mt-4"></div>
+        <div class="container copyright text-center mt-4">
+
+        </div>
     </footer>
 
     <!-- Scroll Top -->
