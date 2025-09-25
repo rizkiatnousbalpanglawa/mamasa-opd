@@ -41,9 +41,9 @@
         <div
             class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
             <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto me-xl-0">
-                <img src="{{ asset(Storage::url($opd->image)) }}" alt="" />
+                <img src="{{ $opd ? asset(Storage::url($opd->image)) : '' }}" alt="" />
                 <div class="">
-                    <h1 class="sitename">{{ Str::limit($opd->singkatan, 15) }}</h1>
+                    <h1 class="sitename">{{ $opd ? Str::limit($opd->singkatan, 15) : '' }}</h1>
                     {{-- <h6 class="d-none d-md-block">{{ Str::limit($opd->nama, 50) }}</h6> --}}
                 </div>
             </a>
@@ -73,51 +73,58 @@
             \Carbon\Carbon::now()->subMinutes(5),
         )->count();
 
-        $opd = \App\Models\IdentitasOpd::first();
-
     @endphp
 
     <footer id="footer" class="footer position-relative light-background">
         <div class="container footer-top">
             <div class="row gy-4 text-center">
-                <div class="col-lg-5 footer-about">
-                    <a href="{{ url('/') }}" class="logo">
-                        <img src="{{ asset(Storage::url($opd->image)) }}" class="img-fluid" alt="Logo Website" />
 
-                    </a>
-                    <h5 class="mt-3">{{ $opd->nama }}</h5>
-                    <hr>
-                    <div class="footer-contact">
-                        {!! $opd->alamat !!}
-                    </div>
-                    <div class="social-links d-flex justify-content-center mt-4">
-                        <a href="{{ $opd->twitter }}"><i class="bi bi-twitter-x"></i></a>
-                        <a href="{{ $opd->facebook }}"><i class="bi bi-facebook"></i></a>
-                        <a href="{{ $opd->instagram }}"><i class="bi bi-instagram"></i></a>
-                        <a href="{{ $opd->youtube }}"><i class="bi bi-youtube"></i></a>
-                        <a href="{{ $opd->tiktok }}"><i class="bi bi-tiktok"></i></a>
-                    </div>
-                </div>
+                @if ($opd)
+                    <div class="col-lg-5 footer-about">
+                        <a href="{{ url('/') }}" class="logo">
+                            <img src="{{ asset(Storage::url($opd->image)) }}" class="img-fluid" alt="Logo Website" />
 
-                <div class="col-lg-3 align-self-center">
-                    <div class="statistik">
-                        <h5>Statistik</h5>
-                        <h1 class="fw-bold"> {{ number_format($totalHits) }}</h1>
-                        <div class="">Pengunjung Hari ini: <span class="fw-bold">{{ $pengunjungHariIni }}</span>
+                        </a>
+                        <h5 class="mt-3">{{ $opd->nama }}</h5>
+                        <hr>
+                        <div class="footer-contact">
+                            {!! $opd->alamat !!}
                         </div>
-                        <div class="">Total Pengunjung: <span class="fw-bold">{{ $totalPengunjung }}</span></div>
-                        <div class="">Hits Hari ini: <span class="fw-bold">{{ $hitsHariIni }}</span></div>
-                        <div class="">Pengunjung Online: <span class="fw-bold">{{ $pengunjungOnline }}</span>
+                        <div class="social-links d-flex justify-content-center mt-4">
+                            <a href="{{ $opd->twitter }}"><i class="bi bi-twitter-x"></i></a>
+                            <a href="{{ $opd->facebook }}"><i class="bi bi-facebook"></i></a>
+                            <a href="{{ $opd->instagram }}"><i class="bi bi-instagram"></i></a>
+                            <a href="{{ $opd->youtube }}"><i class="bi bi-youtube"></i></a>
+                            <a href="{{ $opd->tiktok }}"><i class="bi bi-tiktok"></i></a>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-4 align-self-center">
-                    <iframe class="w-full h-70 border-0 rounded"
-                        src="https://www.google.com/maps?q={{ $opd->latitude }},{{ $opd->longitude }}&hl=id&z=18&output=embed"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+                    <div class="col-lg-3 align-self-center">
+                        <div class="statistik">
+                            <h5>Statistik</h5>
+                            <h1 class="fw-bold"> {{ number_format($totalHits) }}</h1>
+                            <div class="">Pengunjung Hari ini: <span
+                                    class="fw-bold">{{ $pengunjungHariIni }}</span>
+                            </div>
+                            <div class="">Total Pengunjung: <span class="fw-bold">{{ $totalPengunjung }}</span>
+                            </div>
+                            <div class="">Hits Hari ini: <span class="fw-bold">{{ $hitsHariIni }}</span></div>
+                            <div class="">Pengunjung Online: <span class="fw-bold">{{ $pengunjungOnline }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 align-self-center">
+                        <iframe class="w-full h-70 border-0 rounded"
+                            src="https://www.google.com/maps?q={{ $opd->latitude }},{{ $opd->longitude }}&hl=id&z=18&output=embed"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                @else
+                    <div class="">
+                        Data Belum Diisi.
+                    </div>
+                @endif
 
             </div>
         </div>
