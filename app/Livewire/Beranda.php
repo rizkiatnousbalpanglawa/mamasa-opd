@@ -13,6 +13,11 @@ class Beranda extends Component
     {
         $data['berita'] = Berita::limit(4)->latest()->get();
         $data['slider'] = Slider::get();
+        $identitas = IdentitasOpd::exists();
+
+        if (!$identitas) {
+            return redirect('/admin');
+        }
         return view('livewire.beranda', $data);
     }
 }
