@@ -9,15 +9,20 @@ use Livewire\Component;
 
 class Beranda extends Component
 {
+    public function mount()
+    {
+        $identitas = IdentitasOpd::exists();
+
+        if (! $identitas) {
+            $this->redirect('/admin');
+        }
+    }
+
     public function render()
     {
         $data['berita'] = Berita::limit(4)->latest()->get();
         $data['slider'] = Slider::get();
-        $identitas = IdentitasOpd::exists();
 
-        if (!$identitas) {
-            return redirect('/admin');
-        }
         return view('livewire.beranda', $data);
     }
 }
