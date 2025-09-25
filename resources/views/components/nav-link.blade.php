@@ -5,5 +5,5 @@
 @endphp
 
 <li>
-    <a {{ $attributes->merge(['class' => $classes]) }}>{{ $slot }}</a>
+    <a wire:navigate {{ $attributes->merge(['class' => $classes]) }}>{{ $slot }}</a>
 </li>
