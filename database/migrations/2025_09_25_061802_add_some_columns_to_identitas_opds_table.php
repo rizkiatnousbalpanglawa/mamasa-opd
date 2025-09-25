@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('identitas_opds', function (Blueprint $table) {
-            $table->string('logo');
             $table->text('alamat');
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
             $table->string('facebook')->nullable();
+            $table->string('tiktok')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
         });
@@ -29,12 +29,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('identitas_opds', function (Blueprint $table) {
-            $table->dropColumn('logo');
             $table->dropColumn('alamat');
             $table->dropColumn('instagram');
             $table->dropColumn('youtube');
             $table->dropColumn('twitter');
             $table->dropColumn('facebook');
+            $table->dropColumn('tiktok');
             $table->dropColumn('latitude');
             $table->dropColumn('longitude');
         });
