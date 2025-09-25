@@ -75,8 +75,6 @@
 
         $opd = \App\Models\IdentitasOpd::first();
 
-        $lat = -5.147665;
-        $lng = 119.432732;
     @endphp
 
     <footer id="footer" class="footer position-relative light-background">
@@ -116,7 +114,7 @@
 
                 <div class="col-lg-4 align-self-center">
                     <iframe class="w-full h-70 border-0 rounded"
-                        src="https://www.google.com/maps?q={{ $lat }},{{ $lng }}&hl=id&z=15&output=embed"
+                        src="https://www.google.com/maps?q={{ $opd->latitude }},{{ $opd->longitude }}&hl=id&z=15&output=embed"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
