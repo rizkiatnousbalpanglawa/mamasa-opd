@@ -4,7 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>KOMINFO - KABUPATEN MAMASA</title>
+    @php
+        $opd = \App\Models\IdentitasOpd::pluck('singkatan')->first();
+    @endphp
+    <title>{{ $opd }} - KAB. MAMASA</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
