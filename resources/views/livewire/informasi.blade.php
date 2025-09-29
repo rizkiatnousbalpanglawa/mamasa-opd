@@ -40,8 +40,8 @@
 
                                 <div>
                                     <label for="filterTahun" class="form-label">Tahun</label>
-                                    <select class="form-select" id="filterTahun">
-                                        <option selected>Semua Tahun</option>
+                                    <select class="form-select" wire:model.live="tahunTerpilih" id="filterTahun">
+                                        <option value="" selected>Semua Tahun</option>
                                         @foreach ($tahun as $item)
                                             <option value="{{ $item }}">{{ $item }}</option>
                                         @endforeach

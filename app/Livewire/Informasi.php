@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Informasi extends Component
 {
-    public $tahunTerpilih, $kategoriTerpilih, $pencarian = '';
+    public $tahunTerpilih = '', $kategoriTerpilih, $pencarian = '';
     public function incrementView($id)
     {
         $item = ModelsInformasi::find($id);
@@ -33,6 +33,10 @@ class Informasi extends Component
 
         if ($this->pencarian) {
             $query->where('judul', 'LIKE', '%' . $this->pencarian . '%');
+        }
+
+        if ($this->tahunTerpilih) {
+            $query->WhereYear('tanggal', $this->tahunTerpilih);
         }
 
         $data['informasi'] = $query->get();
