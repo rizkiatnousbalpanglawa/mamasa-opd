@@ -68,7 +68,8 @@
                                  {{-- Akhir bagian tambahan --}}
 
                                  <h5 class="card-title">
-                                     <a href="#" class="text-decoration-none text-dark stretched-link">
+                                     <a href="{{ route('berita.detail', $item->slug) }}"
+                                         class="text-decoration-none text-dark stretched-link">
                                          {{ $item->judul }}
                                      </a>
                                  </h5>
