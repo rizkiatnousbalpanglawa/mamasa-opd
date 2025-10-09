@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\LinkTerkaits;
 
 use App\Filament\Resources\LinkTerkaits\Pages\ManageLinkTerkaits;
+use App\GroupNavigasi;
 use App\Models\LinkTerkait;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -18,12 +19,15 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Storage;
+use UnitEnum;
 
 class LinkTerkaitResource extends Resource
 {
     protected static ?string $model = LinkTerkait::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static string|UnitEnum|null $navigationGroup = GroupNavigasi::BERANDA;
 
     public static function form(Schema $schema): Schema
     {
