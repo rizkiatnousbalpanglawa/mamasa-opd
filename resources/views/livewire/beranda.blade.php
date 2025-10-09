@@ -89,7 +89,7 @@
 
 
 
-     <section id="logo-grid" class="section py-5" style="background-color:#a3a3a3;">
+     <section id="logo-grid" class="section py-3" style="background-color:#a3a3a3;">
          <div class="container">
 
              @php
@@ -106,11 +106,13 @@
                          <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                              <div class="row g-4 justify-content-center">
                                  @foreach ($chunk as $item)
-                                     <div class="col-6 col-md-3 d-flex justify-content-center">
-                                         <a href="{{ $item->link }}" target="_blank" rel="noopener">
+                                     <div class="col-6 col-md-3">
+                                         <a href="{{ $item->link }}" target="_blank" rel="noopener"
+                                             class="d-flex flex-column align-items-center text-center text-decoration-none">
                                              <img src="{{ asset(Storage::url($item->logo)) }}"
-                                                 alt="{{ $item->nama ?? 'Logo' }}" class="logo-img img-fluid">
-                                             <div class="text-center">{{ $item->nama }}</div>
+                                                 alt="{{ $item->nama ?? 'Logo' }}"
+                                                 class="logo-img rounded img-fluid mb-2">
+                                             <div class="fw-medium text-dark">{{ $item->nama }}</div>
                                          </a>
                                      </div>
                                  @endforeach
@@ -157,7 +159,7 @@
 
          /* padding kecil untuk area carousel */
          #logo-grid .carousel {
-             padding: 10px 0 30px;
+             padding: 10px 0 10px;
          }
 
          .carousel-control-prev-icon,
