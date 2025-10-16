@@ -133,7 +133,12 @@
         </div>
 
         <div class="container copyright text-center mt-4">
-
+            <p>© 2025 <strong class="sitename">Diskominfosandi</strong> <span>All Rights
+                    Reserved</span>
+            </p>
+            {{-- <div class="credits">
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div> --}}
         </div>
     </footer>
 
