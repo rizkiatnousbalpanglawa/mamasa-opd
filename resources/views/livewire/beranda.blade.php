@@ -62,7 +62,7 @@
                                      <span>
                                          <i class="bi bi-calendar3 me-1"></i>
                                          {{-- Format tanggal agar lebih mudah dibaca --}}
-                                         {{ $item->created_at->format('d M Y') }}
+                                         {{ $item->tanggal->format('d M Y') }}
                                      </span>
                                  </div>
                                  {{-- Akhir bagian tambahan --}}
