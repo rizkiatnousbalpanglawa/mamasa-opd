@@ -9,7 +9,7 @@ class Berita extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'tanggal' => 'date'
+        'tanggal' => 'datetime'
     ];
 
     public function penulis()
