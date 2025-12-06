@@ -11,10 +11,10 @@
     <section id="" class="section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="row g-4">
                         @forelse ($berita as $item)
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-3 col-md-6">
                                 <a href="{{ route('berita.detail', $item->slug) }}"
                                     class="text-decoration-none text-dark">
                                     <div class="card h-100 shadow-sm border-0 news-card">
