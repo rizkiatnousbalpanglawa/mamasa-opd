@@ -15,12 +15,17 @@
                     <div class="row g-4">
                         @forelse ($berita as $item)
                             <div class="col-lg-4 col-md-6">
-                                <a href="{{ route('berita.detail', $item->slug) }}">
+                                <a href="{{ route('berita.detail', $item->slug) }}"
+                                    class="text-decoration-none text-dark">
                                     <div class="card h-100 shadow-sm border-0 news-card">
                                         <img src="{{ asset(Storage::url($item->image)) }}" class="card-img-top"
-                                            alt="{{ $item->judul }}" />
+                                            alt="{{ $item->judul }}"
+                                            style="height: 200px; object-fit: cover; width: 100%;" />
+
                                         <div class="card-body">
-                                            <h6 class="text-muted small">{{ $item->penulis->nama }}</h6>
+                                            <h6 class="text-muted small mb-2">
+                                                <i class="bi bi-person me-1"></i>{{ $item->penulis->nama }}
+                                            </h6>
                                             <h5 class="card-title">
                                                 {{ $item->judul }}
                                             </h5>
