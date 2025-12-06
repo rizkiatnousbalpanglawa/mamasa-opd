@@ -17,7 +17,7 @@
                     </div>
                     <div class="text-muted mb-3">{{ $berita->tanggal->format('D, d M Y H:i') }} WITA</div>
                     <div class="border-0">
-                        <img src="{{ asset(Storage::url($berita->image)) }}" class="img-fluid rounded-3 mb-3"
+                        <img src="{{ asset(Storage::url($berita->image)) }}" class="img-responsive rounded-3 mb-3"
                             alt="{{ $berita->judul }}" />
                         <div class="">
                             {!! $berita->konten !!}
