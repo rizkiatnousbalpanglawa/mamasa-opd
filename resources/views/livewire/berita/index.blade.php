@@ -39,6 +39,15 @@
                             </div>
                         @endforelse
                     </div>
+
+                    <section id="pagination-2" class="pagination-2 section">
+
+                        <div class="container">
+
+                            {{ $berita->links() }}
+                        </div>
+
+                    </section>
                 </div>
             </div>
         </div>
